@@ -9,7 +9,7 @@ import { Store } from '@tauri-apps/plugin-store'
  */
 export async function getActualRepoName(
   type: 'sync' | 'image',
-  platform: 'github' | 'gitee' | 'gitlab'
+  platform: 'github' | 'gitee' | 'gitlab' | 'gitea'
 ): Promise<string> {
   const store = await Store.load('store.json')
   
@@ -26,6 +26,9 @@ export async function getActualRepoName(
         break
       case 'gitlab':
         customRepoName = await store.get<string>('gitlabCustomSyncRepo') || ''
+        break
+      case 'gitea':
+        customRepoName = await store.get<string>('giteaCustomSyncRepo') || ''
         break
     }
   } else if (type === 'image' && platform === 'github') {
@@ -46,7 +49,7 @@ export async function getActualRepoName(
  * @param platform 平台：'github' | 'gitee' | 'gitlab'
  * @returns 同步仓库名称
  */
-export async function getSyncRepoName(platform: 'github' | 'gitee' | 'gitlab'): Promise<string> {
+export async function getSyncRepoName(platform: 'github' | 'gitee' | 'gitlab' | 'gitea'): Promise<string> {
   return getActualRepoName('sync', platform)
 }
 

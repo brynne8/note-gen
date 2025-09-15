@@ -253,6 +253,15 @@
         "selfHostedDesc": "自建 GitLab インスタンスの URL を入力してください（例：https://gitlab.example.com）"
       },
       "gitlabAccessTokenDesc": "{instanceDisplayName}でパーソナルアクセストークンを作成するには、api権限が必要です",
+      "giteaInstanceType": "Gitea インスタンスタイプ",
+      "giteaInstanceTypeDesc": "接続する Gitea インスタンスタイプを選択してください",
+      "giteaInstanceTypePlaceholder": "Gitea インスタンスタイプを選択してください",
+      "giteaInstanceTypeOptions": {
+        "selfHosted": "自建インスタンス",
+        "selfHostedDesc": "自建 Gitea インスタンスの URL を入力してください（例：https://gitea.example.com）"
+      },
+      "giteaAccessTokenDesc": "{instanceDisplayName}でパーソナルアクセストークンを作成するには、リポジトリの読み書き権限が必要です",
+      "giteaAutoSyncDesc": "有効にすると、入力停止から10秒後にエディタが自動的にGiteaに同期します",
       "autoSyncOptions": {
         "placeholder": "自動同期時間",
         "disabled": "無効",
