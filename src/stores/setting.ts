@@ -421,7 +421,7 @@ const useSettingStore = create<SettingState>((set, get) => ({
       }
     }
     } catch (e) {
-      console.error("fetch error")
+      console.error("fetch error", e)
     }
 
     Object.entries(get()).forEach(async ([key, value]) => {
