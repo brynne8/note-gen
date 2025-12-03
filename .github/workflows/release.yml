@@ -57,8 +57,6 @@ jobs:
         id: tauri-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
-          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         with:
           tagName: note-gen-v__VERSION__
           releaseName: 'NoteGen v__VERSION__'
@@ -82,17 +80,3 @@ jobs:
         run: |
           # 注意：这里引用的是 save_tag 步骤的 tag_name 输出
           echo "appVersion=${{ steps.save_tag.outputs.appVersion }}" >> $GITHUB_OUTPUT
-
-  upgradeLink-upload:
-      needs:  publish-tauri
-      permissions:
-        contents: write
-      runs-on: ubuntu-latest
-      steps:
-        - name: Send a request to UpgradeLink
-          uses: toolsetlink/upgradelink-action@v5
-          with:
-            source-url: 'https://github.com/codexu/note-gen/releases/download/note-gen-v${{ needs.publish-tauri.outputs.appVersion }}/latest.json'
-            access-key: ${{ secrets.UPGRADE_LINK_ACCESS_KEY }}
-            tauri-key: ${{ secrets.UPGRADE_LINK_TAURI_KEY }}
-            github-token: ${{ secrets.GITHUB_TOKEN }}

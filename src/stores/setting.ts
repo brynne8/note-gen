@@ -377,6 +377,8 @@ const useSettingStore = create<SettingState>((set, get) => ({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${apiKey}`
     }
+
+    try {
     const res = await fetch('https://api.notegen.top/v1/models', {
       method: 'GET',
       headers
@@ -417,6 +419,9 @@ const useSettingStore = create<SettingState>((set, get) => ({
         await store.set('aiModelList', finalAiModelList)
         set({ aiModelList: finalAiModelList })
       }
+    }
+    } catch (e) {
+      console.error("fetch error")
     }
 
     Object.entries(get()).forEach(async ([key, value]) => {
